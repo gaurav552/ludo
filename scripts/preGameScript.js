@@ -84,11 +84,13 @@ function manageConnections(conn) {
             conn.on('error', function() {
                 // handle error 
                 //    connectionError(conn);
+                
             });
 
             conn.on('close', function() {
                 // Handle connection closed
                 //    connectionClose(conn);
+                remotePeerId.splice(remotePeerId.indexOf(conn.peer),1)
             });
 
             connections.push(conn);
@@ -176,7 +178,26 @@ function add_friend(name) {
 }
 
 function add_to_game(e) {
-    getConnected(e.target.parentElement.parentElement.querySelector("h1").innerHTML)
+    getConnected(e.target.parentElement.parentElement.parentElement.querySelector("h1").innerHTML)
+}
+
+function remove_friend(e){
+    let val = e.target.parentElement.parentElement.parentElement.querySelector("h1").innerHTML
+    e.target.parentElement.parentElement.parentElement.remove()
+    saved_friends.splice(saved_friends.indexOf(val),1)
+    remotePeerId.splice(remotePeerId.indexOf(val),1)
+    if(saved_friends.length != 0 ){
+        localStorage.setItem("Friends", saved_friends)
+    } else {
+        localStorage.removeItem("Friends")
+    }
+    connections.forEach((e,i)=>{
+        if(e.peer == val){
+            e.close()
+            console.log(e.peer+" close")
+        }
+        
+    })
 }
 
 function colouring() {

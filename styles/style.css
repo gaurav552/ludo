@@ -216,7 +216,7 @@ main {
 }
 
 .network>.friends>.friends_list{
-    width: 70%;
+    min-width: 30rem;
     height: 5rem;
     margin: 1rem;
     background: #282828;
@@ -232,6 +232,29 @@ main {
     color: #919191;
     letter-spacing: .3rem;
     font-weight: 600;
+}
+
+.friends_buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.friends_buttons>button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    border: none;
+    background: #181818;
+    color: #999;
+    margin: 0 .3rem;
+}
+
+.friends_buttons>button>.material-icons{
+    font-size: 2rem;
 }
 
 .start{
@@ -261,22 +284,6 @@ main {
 
 .start>button:active{
     box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
-}
-
-.add_to_game{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    border: none;
-    background: #181818;
-    color: #999;
-}
-
-.add_to_game>.material-icons{
-    font-size: 2rem;
 }
 
 .game {

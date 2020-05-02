@@ -63,11 +63,19 @@
     <template id="friends_list_template">
         <div class="friends_list">
             <h1>Sneha</h1>
-            <button class="add_to_game" onclick="add_to_game(event)">
-                <span class="material-icons">
-                    add
-                </span>
-            </button>
+            <div class="friends_buttons">
+                <button class="add_to_game" onclick="add_to_game(event)">
+                    <span class="material-icons">
+                        add
+                    </span>
+                </button>
+    
+                <button class="remove_saved_friend" onclick="remove_friend(event)">
+                    <span class="material-icons">
+                        delete
+                    </span>
+                </button>
+            </div>
         </div>
     </template>
 
