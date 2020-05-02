@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Raleway', sans-serif;
+}
+
+:root {
+    font-size: 10px;
+}
+
+.green {
+    --border: rgba(57, 255, 20, .5);
+}
+
+.blue {
+    --border: rgba(0, 128, 255, .5);
+}
+
+.red {
+    --border: rgba(255, 31, 0, .5);
+}
+
+.yellow {
+    --border: rgba(255, 211, 0, .5);
+}
+
+body {
+    background: #151515;
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.start-screen {
+    width: 100%;
+    height: 100%;
+}
+
+.game-title {
+    position: fixed;
+    top: 3rem;
+    left: 50%;
+    color: #717171;
+    margin-left: -83px;
+    font-size: 1rem;
+}
+
+.player-name {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-name>form {
+    margin: 2rem;
+    padding: 2rem;
+    font-size: 1.6rem;
+    color: #919191;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.player-name>form>label {
+    font-weight: 600;
+}
+
+.player-name>form>input {
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    width: 30%;
+}
+
+.player-name>.name {
+    margin: 3rem;
+    padding: 2rem;
+    font-size: 2.5rem;
+    color: #828282;
+    letter-spacing: .3rem;
+}
+
+.player-name>.buttons {
+    margin: 1rem;
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons>button {
+    margin: 1rem;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #151515;
+    color: #919191;
+    border: none;
+    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.8), -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+}
+
+.buttons>button:focus {
+    outline: none;
+}
+
+.buttons>button:active {
+    box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, .1);
+}
+
+.settings-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-screen>#change_name_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.settings-screen>#change_name_form>label {
+    margin: 1rem;
+    color: #ccc;
+}
+
+.settings-screen>#change_name_form>input {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+.settings-screen>.close_setting {
+    position: fixed;
+    top: 8rem;
+    left: 3rem;
+}
+
+.settings-screen>.close_setting>button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    background: #151515;
+    color: #919191;
+    border: none;
+    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.8), -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+}
+
+.settings-screen>.close_setting>button:focus {
+    outline: none;
+}
+
+.settings-screen>.close_setting>button:active {
+    box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+}
+
+.network {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.network>form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.network>form>input{
+    padding: 1rem;
+    margin: 3rem;
+    border-radius: 2rem;
+    width: 50%;
+}
+
+.network>.friends{
+    width: 100%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.network>.friends>.friends_list{
+    width: 70%;
+    height: 5rem;
+    margin: 1rem;
+    background: #282828;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.network>.friends>.friends_list> h1{
+    margin-left: 1rem;
+    color: #919191;
+    letter-spacing: .3rem;
+    font-weight: 600;
+}
+
+.start{
+    width: 60%;
+    height: 5rem;
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start>button{
+    width: 15rem;
+    height: 4rem;
+    border-radius: .7rem;
+    border: none;
+    background: #181818;
+    color: #999;
+    letter-spacing: .5rem;
+    text-transform: uppercase;
+    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.8), -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+}
+
+.start>button:focus{
+    outline: none;
+}
+
+.start>button:active{
+    box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+}
+
+.add_to_game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    border: none;
+    background: #181818;
+    color: #999;
+}
+
+.add_to_game>.material-icons{
+    font-size: 2rem;
+}
+
+.game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    background: #151515;
+    width: 80rem;
+    height: 80rem;
+    border-radius: 2rem;
+    box-shadow: .5rem .5rem 1rem rgba(0, 0, 0, 0.5), -.5rem -.5rem 1rem rgba(255, 255, 255, 0.05);
+    padding: 5rem;
+    margin: 2rem;
+}
+
+.home {
+    background: #292929;
+    width: 27.5rem;
+    height: 27.5rem;
+    border-radius: 2rem;
+    padding: 5rem;
+}
+
+/* .turn {
+    box-shadow: 0 0 .8rem var(--border);
+} */
+
+.path-v {
+    height: 27.5rem;
+    width: 15rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+}
+
+.center {
+    height: 15rem;
+    width: 15rem;
+    background: #272727;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lines {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lines>.line1,
+.line2 {
+    width: .1rem;
+    height: 21rem;
+    background: #999;
+    left: 50%;
+    bottom: 39%;
+}
+
+.line1 {
+    transform: rotate(45deg);
+}
+
+.line2 {
+    transform: rotate(135deg);
+}
+
+.path-h {
+    height: 15rem;
+    width: 27.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+}
+
+.home-inner {
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    border-radius: 2rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, .5);
+}
+
+.player{
+    box-shadow: 0 0 .8rem var(--border);
+}
+
+.turn>.home-inner{
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.material-icons {
+    font-size: 2.7rem;
+}
+
+.initial {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.position {
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background: var(--border);
+    border: 1px solid var(--border);
+    transition: all .2s ease-in-out;
+}
+
+.position:hover {
+    transform: scale(1.3);
+}
+
+.tile {
+    background: #202020;
+    width: 4rem;
+    height: 4rem;
+    margin: .2rem;
+    border-radius: .5rem;
+    transition: all .2s ease-in-out;
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile:hover {
+    transform: scale(1.3)!important;
+    background: #303030;
+    color: #222;
+}
+
+.border {
+    border: 1px solid var(--border);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 25rem;
+    height: 50rem;
+    border-radius: 2rem;
+    background: #151515;
+    margin: 2rem;
+    box-shadow: inset -0.2rem -0.2rem 0.6rem rgba(255, 255, 255, 0.05), inset 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    color: #717171;
+}
+
+.current-moves {
+    padding: 1.5rem;
+    font-size: .8rem;
+    letter-spacing: .3rem;
+    border-radius: 2rem;
+    box-shadow: inset -0.2rem -0.2rem 0.6rem rgba(255, 255, 255, 0.05), inset 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.8);
+}
+
+.dice {
+    width: 13rem;
+    height: 13rem;
+    background: #191919;
+    border-radius: 2rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, .5), -0.5rem -0.5rem 0.5rem rgba(255, 255, 255, 0.05)
+}
+
+.roll {
+    width: 100%;
+    padding: 1rem;
+}
+
+.roll>button {
+    width: 100%;
+    height: 4rem;
+    border-radius: 2rem;
+    color: #717171;
+    border: none;
+    background: #191919;
+    font-size: 1.8rem;
+    box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, .5), -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.05);
+    letter-spacing: .4rem;
+    transition: box-shadow 1s ease-in-out;
+}
+
+.roll>button:focus {
+    outline: none;
+}
+
+.roll>button:active {
+    box-shadow: inset 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, .5), inset -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.05);
+    color: #1165de;
+}

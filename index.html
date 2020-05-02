@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
+    <script defer src="scripts/script.js"></script>
+    <script defer src="scripts/preGameScript.js"></script>
+    <title>ludo</title>
+
+</head>
+
+<body>
+    <main>
+
+    </main>
+
+    <template id="start_screen_template">
+        <div class="start-screen">
+            <div class="game-title">
+                <h1>LUDO - By Gaurav</h1>
+            </div>
+        </div>
+    </template>
+
+    <template id="network_template">
+        <div class="network">
+            <form id="add_friend_form">
+                <input type="text" required>
+            </form>
+            <div class="friends">
+                <div class="start">
+                    <button>Start</button>
+                </div>
+            </div>
+
+            <script>
+                document.querySelector(".start>button").addEventListener("click", e => {
+                    if(remotePeerId.length >= 1){
+                        colouring()
+                    }
+                    
+                })
+
+                document.querySelector("#add_friend_form").addEventListener("submit", e=>{
+                    e.preventDefault()
+
+                    if(e.target.querySelector("input").value != null || e.target.querySelector("input").value != "" ){
+                        add_friend(e.target.querySelector("input").value)
+                        e.target.querySelector("input").value = ""
+                    }
+
+                })
+            </script>
+
+        </div>
+    </template>
+
+    <template id="friends_list_template">
+        <div class="friends_list">
+            <h1>Sneha</h1>
+            <button class="add_to_game" onclick="add_to_game(event)">
+                <span class="material-icons">
+                    add
+                </span>
+            </button>
+        </div>
+    </template>
+
+    <template id="player_name_template">
+        <div class="player-name">
+            <div class="name">
+                <h1>Gaurav Raj Ghimire</h1>
+            </div>
+            <div class="buttons">
+                <button class="play-button">
+                    <span class="material-icons">
+                        play_arrow
+                    </span>
+                </button>
+                <button class="settings-button">
+                    <span class="material-icons">
+                        settings
+                    </span>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <template id="settings_template">
+        <div class="settings-screen">
+            <div class="close_setting">
+                <button>
+                    <span class="material-icons">close</span>
+                </button>
+
+                <script>
+                    document.querySelector(".close_setting>button").addEventListener("click", e=>{
+                        document.querySelector(".settings-screen").remove()
+                        display_start()
+                    })
+
+                    document.querySelector("#change_name_form").addEventListener("submit",e=>{
+                        e.preventDefault()
+                        localStorage.setItem("User Name", document.querySelector("#edit_name").value)
+                    })
+                </script>
+               
+            </div>
+            <form id="change_name_form">
+                <label for="edit_name">Edit Name</label>
+                <input type="text" id="edit_name">
+            </form>
+        </div>
+    </template>
+
+    <template id="name_form_template">
+        <form id="user_name_form">
+            <label for="name_input">Type User Name and Press Enter</label>
+            <input type="text" id="name_input">
+            <script>
+                let start_screen = document.querySelector("main>.start-screen")
+                let form = document.querySelector("#user_name_form")
+                let inp = document.querySelector("#name_input")
+                let player_name = start_screen.querySelector(".player-name")
+                form.addEventListener("submit", e => {
+                    e.preventDefault()
+                    localStorage.setItem("User Name", inp.value)
+                    let new_name_parent = document.createElement("div")
+                    new_name_parent.classList.add("name")
+                    new_name_parent.innerHTML = `<h1>${localStorage.getItem("User Name")}</h1>`
+                    player_name.insertBefore(new_name_parent,form)
+                    form.remove()
+                    peering()
+                })
+
+            </script>
+        </form>
+    </template>
+
+    <template id="game_template">
+        <div class="game">
+            <div class="board">
+
+            </div>
+            <div class="controls">
+                <div class="current-moves">
+                    <h1>
+                        No Moves Left
+                    </h1>
+                </div>
+    
+                <div class="dice">
+    
+                </div>
+    
+                <div class="roll">
+                    <button type="button">Roll</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="home_template">
+        <div class="home-inner">
+            <div class="initial">
+                <div class="position"></div>
+            </div>
+            <div class="initial">
+                <div class="position"></div>
+            </div>
+            <div class="initial">
+                <div class="position"></div>
+            </div>
+            <div class="initial">
+                <div class="position"></div>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
