@@ -31,3 +31,41 @@
 .spin{
     animation: spin 2s ease;
 }
+
+
+#one{
+  /* background-color:rgba(255,0,0,0.6); */
+  transform:rotateY(0deg) translateZ(100px);
+  }
+  #two{
+  /* background-color:rgba(0,255,0,0.6); */
+  transform:rotateY(90deg) translateZ(100px);
+  }
+  #three{
+  /* background-color:rgba(255,255,0,0.6); */
+  transform:rotateY(180deg) translateZ(100px);
+  }
+  #four{
+  /* background-color:rgba(255,0,255,0.6); */
+  transform:rotateY(-90deg) translateZ(100px);
+  }
+  #five{
+  /* background-color:rgba(0,255,255,0.6); */
+  transform:rotateX(90deg) translateZ(100px);
+  }
+  #six{
+  /* background-color:rgba(0,0,255,0.6); */
+  transform:rotateX(-90deg) translateZ(100px);
+  }
+
+  .diceFace{
+    position:absolute;
+    background: #191919;
+    border-radius: 2rem;
+    /* width:200px;
+    height:200px; */
+    /* text-align:center;
+    line-height:200px;
+    font-size:45px; */
+    /* border:2px solid #a00; */
+    }

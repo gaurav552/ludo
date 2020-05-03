@@ -10,6 +10,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
     <script defer src="scripts/script.js"></script>
     <script defer src="scripts/preGameScript.js"></script>
+    <script defer src="scripts/game.js"></script>
     <title>ludo</title>
 
 </head>
@@ -40,9 +41,9 @@
 
             <script>
                 document.querySelector(".start>button").addEventListener("click", e => {
-                    if(remotePeerId.length >= 1){
+                    // if(remotePeerId.length >= 1){
                         colouring()
-                    }
+                    // }
                     
                 })
 
@@ -161,14 +162,35 @@
                         No Moves Left
                     </h1>
                 </div>
-    
-                <div class="dice">
-    
+                <div class="dice-view">
+                    <div class="dice">
+                        <div class="diceFace" id="one"><img src="assets/one.png" width="100%" height="100%" alt=""></div>
+                        <div class="diceFace" id="two"><img src="assets/two.png" width="100%" height="100%" alt=""></div>
+                        <div class="diceFace" id="three"><img src="assets/three.png" width="100%" height="100%" alt=""></div>
+                        <div class="diceFace" id="four"><img src="assets/four.png" width="100%" height="100%" alt=""></div>
+                        <div class="diceFace" id="five"><img src="assets/five.png" width="100%" height="100%" alt=""></div>
+                        <div class="diceFace" id="six"><img src="assets/six.png" width="100%" height="100%" alt=""></div>
+                    </div>
                 </div>
+
     
                 <div class="roll">
                     <button type="button">Roll</button>
                 </div>
+                <script>
+                    document.querySelector(".roll>button").addEventListener("click", e=>{
+                        // console.log(Math.floor(Math.random() * (6)+1))
+                        
+                        let rand = Math.floor(Math.random() * (6)+1)
+                        let send_roll = {
+                            'type':'roll',
+                            'value':rand
+                        }
+                        broadcastRoll(JSON.stringify(send_roll))
+                        dice_roller(rand)
+                        // console.log(rand)
+                    })
+                </script>
             </div>
         </div>
     </template>

@@ -77,7 +77,10 @@ function manageConnections(conn) {
                     localStorage.setItem("Color", message.value)
                     localStorage.setItem("Turn", message.turn)
                     game_changer()
-                } else {
+                } else if(message.type == "roll"){
+                    dice_roller(message.value)
+                }
+                else {
                     console.log("diff")
                 }
             });
