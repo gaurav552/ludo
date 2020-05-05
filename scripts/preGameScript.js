@@ -79,6 +79,9 @@ function manageConnections(conn) {
                     game_changer()
                 } else if(message.type == "roll"){
                     dice_roller(message.value)
+                } else if(message.type == "home out"){
+                    console.log("here")
+                    other_out(message)
                 }
                 else {
                     console.log("diff")
@@ -238,26 +241,26 @@ function game_changer() {
     let my_color = localStorage.getItem("Color")
     let color = ['red', 'green', 'blue', 'yellow']
     color = color_repositioning(my_color, color)
-    console.log(color)
+    // console.log(color)
 
     let screen_template = getTemplate("game_template")
     let screen = `
-        <div id="${color[0]}" class="${color[0]} home player"></div>
-        <div class="${color[1]} ${color[1]}-move path path-v"></div>
-        <div id="${color[1]}" class="${color[1]} home"></div>
-        <div class="${color[0]} ${color[0]}-move path path-h"></div>
+        <div id="${color[0]}" class="${color[0]} home player pos_1"></div>
+        <div class="${color[1]} ${color[1]}-move path path-v path_2"></div>
+        <div id="${color[1]}" class="${color[1]} home pos_2"></div>
+        <div class="${color[0]} ${color[0]}-move path path-h path_1"></div>
         <div class="center">
-            <div class="lines spin">
+            <div class="lines">
                 <div class="line1"></div>
                 <div class="line2"></div>
             </div>
         </div>
-        <div class="${color[2]} ${color[2]}-move path path-h"></div>
-        <div id="${color[3]}" class="${color[3]} home"></div>
-        <div class="${color[3]} ${color[3]}-move path path-v"></div>
-        <div id="${color[2]}" class="${color[2]} home"></div>
+        <div class="${color[2]} ${color[2]}-move path path-h path_3"></div>
+        <div id="${color[3]}" class="${color[3]} home pos_4"></div>
+        <div class="${color[3]} ${color[3]}-move path path-v path_4"></div>
+        <div id="${color[2]}" class="${color[2]} home pos_3"></div>
     `
-    console.log('.board>.home.'+localStorage.getItem("Turn"))
+    // console.log('.board>.home.'+localStorage.getItem("Turn"))
     screen_template.querySelector(".board").innerHTML = screen
     document.querySelector("main").replaceChild(screen_template, document.querySelector(".start-screen"))
     document.getElementById(localStorage.getItem("Turn")).classList.add("turn")
@@ -265,8 +268,38 @@ function game_changer() {
     if(document.querySelector(".network") !== null){
         document.querySelector(".network").remove()
     }
+
+    document.querySelectorAll("."+localStorage.getItem("Color")+".home_piece").forEach(e=>{
+        e.addEventListener("click",ev=>{
+            // console.log(ev.target.parentElement)
+            if(localStorage.getItem("Color") == localStorage.getItem('Turn')){
+                if(localStorage.getItem("Previous Roll") == 6){
+                    localStorage.removeItem("Previous Roll")
+                    ev.target.disabled = true
+                    let op =getTemplate("out_piece_template")
+                    // console.log(op.querySelector("button"))
+                    op.querySelector("button").classList.add(localStorage.getItem("Color")+"_piece")
+                    document.querySelector("[this-path='1']").appendChild(op)
+
+                    let send_move = {
+                        'type':'home out',
+                        'from': '.home_piece.'+localStorage.getItem("Color"),
+                        'to': document.querySelector("[this-path='1']").getAttribute('uni-path'),
+                        'color': localStorage.getItem("Color")
+                    }
+                    broadcastRoll(JSON.stringify(send_move))
+                    document.querySelector(".roll>button").disabled = false
+                    // console.log(send_move)
+                    // document.querySelectorAll(".out_piece")
+                } 
+            }
+        })
+    })
     
 }
+
+
+
 
 function color_repositioning(my_color, color) {
     while (color[0] != my_color) {

@@ -29,7 +29,40 @@
   
 
 .spin{
-    animation: spin 2s ease;
+    animation: spin 2s ease infinite;
+}
+
+.pulse{
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes shake {
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.shake{
+  animation: shake 1s ease-in-out infinite;
 }
 
 
@@ -62,6 +95,7 @@
     position:absolute;
     background: #191919;
     border-radius: 2rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, .5), -0.5rem -0.5rem 0.5rem rgba(255, 255, 255, 0.05);
     /* width:200px;
     height:200px; */
     /* text-align:center;

@@ -178,10 +178,18 @@
                     <button type="button">Roll</button>
                 </div>
                 <script>
+                    if(localStorage.getItem("Turn") == localStorage.getItem("Color")){
+                        document.querySelector(".roll>button").disabled = false
+                    } else{
+                        document.querySelector(".roll>button").disabled = true
+                    }
+
                     document.querySelector(".roll>button").addEventListener("click", e=>{
                         // console.log(Math.floor(Math.random() * (6)+1))
-                        
+                        e.target.disabled = true
                         let rand = Math.floor(Math.random() * (6)+1)
+                        
+
                         let send_roll = {
                             'type':'roll',
                             'value':rand
@@ -198,18 +206,71 @@
     <template id="home_template">
         <div class="home-inner">
             <div class="initial">
-                <div class="position"></div>
+                <div class="position">
+                    <button class="piece home_piece"></button>
+                </div>
             </div>
             <div class="initial">
-                <div class="position"></div>
+                <div class="position">
+                    <button class="piece home_piece"></button>
+                </div>
             </div>
             <div class="initial">
-                <div class="position"></div>
+                <div class="position">
+                    <button class="piece home_piece"></button>
+                </div>
             </div>
             <div class="initial">
-                <div class="position"></div>
+                <div class="position">
+                    <button class="piece home_piece"></button>
+                </div>
             </div>
         </div>
+    </template>
+    <template id="out_piece_template">
+        <button class="out_piece piece" onclick="mover(event)"></button>
+    </template>
+
+    <template id="path_template">
+        <div uni-path="50" class="tile path"></div>
+        <div uni-path="49" class="tile path"></div>
+        <div uni-path="48" class="tile path safe"></div>
+        <div uni-path="47" class="tile path"></div>
+        <div uni-path="46" class="tile path"></div>
+        <div uni-path="45" class="tile path"></div>
+        <div uni-path="51" class="tile path"></div>
+        <div safe-path="1" class="tile safe"></div>
+        <div safe-path="2" class="tile safe"></div>
+        <div safe-path="3" class="tile safe"></div>
+        <div safe-path="4" class="tile safe"></div>
+        <div safe-path="5" class="tile safe"></div>
+        <div uni-path="52" class="tile path"></div>
+        <div uni-path="1" class="tile path safe"></div>
+        <div uni-path="2" class="tile path"></div>
+        <div uni-path="3" class="tile path"></div>
+        <div uni-path="4" class="tile path"></div>
+        <div uni-path="5" class="tile path"></div>
+    </template>
+
+    <template id="path_template_inverse">
+        <div uni-path="52" class="tile path"></div>
+        <div uni-path="1" class="tile path safe"></div>
+        <div uni-path="2" class="tile path"></div>
+        <div uni-path="3" class="tile path"></div>
+        <div uni-path="4" class="tile path"></div>
+        <div uni-path="5" class="tile path"></div>
+        <div uni-path="51" class="tile path"></div>
+        <div safe-path="1" class="tile safe"></div>
+        <div safe-path="2" class="tile safe"></div>
+        <div safe-path="3" class="tile safe"></div>
+        <div safe-path="4" class="tile safe"></div>
+        <div safe-path="5" class="tile safe"></div>
+        <div uni-path="50" class="tile path"></div>
+        <div uni-path="49" class="tile path"></div>
+        <div uni-path="48" class="tile path safe"></div>
+        <div uni-path="47" class="tile path"></div>
+        <div uni-path="46" class="tile path"></div>
+        <div uni-path="45" class="tile path"></div>
     </template>
 </body>
 

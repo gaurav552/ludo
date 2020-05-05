@@ -12,43 +12,96 @@ function game_screen() {
     home.forEach((e, i) => {
         let inner = getTemplate("home_template")
         inner.querySelector(".position").classList.add(e.classList[0])
+        inner.querySelectorAll(".position>.piece").forEach(el => {
+            el.classList.add(e.classList[0])
+                // if (e.classList[0] == 'red') {
+                //     el.innerHTML = `<span class="material-icons">change_history</span>`
+                // } else if (e.classList[0] == 'green') {
+                //     el.innerHTML = `<span class="material-icons">favorite_border</span>`
+                // } else if (e.classList[0] == 'yellow') {
+                //     el.innerHTML = `<span class="material-icons">add</span>`
+                // } else if (e.classList[0] == 'blue') {
+                //     el.innerHTML = `<span class="material-icons">crop_free</span>`
+                // }
+        })
         e.appendChild(inner)
-
     })
 
-    for(let i = 1; i <= 72; i++){
-        let tile = document.createElement("div")
-        tile.classList.add("tile")
-        tile.classList.add("no_"+i)
-        if(i<= 18){
-            path_red.appendChild(tile)
-        } else if(i>18 && i<=36){
-            path_green.appendChild(tile)
-        } else if(i>36 && i<=54){
-            path_blue.appendChild(tile)
-        } else{
-            path_yellow.appendChild(tile)
-        }
-    }
+    let my_color = localStorage.getItem("Color")
+    let color = ['red', 'green', 'blue', 'yellow']
+    color = color_repositioning(my_color, color)
 
-    path.forEach((e,i)=>{
-        if(i == 0){
-            safe_tiles(e.children.item(5))
-            safe_tiles(e.children.item(6))
-        } else if(i == 1){
-            safe_tiles(e.children.item(3))
-            safe_tiles(e.children.item(8))
-        } else if(i == 2){
-            safe_tiles(e.children.item(9))
-            safe_tiles(e.children.item(14))
-        } else if(i == 3){
-            safe_tiles(e.children.item(11))
-            safe_tiles(e.children.item(12))
+    color.forEach((e, i) => {
+        let color_path = document.querySelector("." + e + "-move")
+
+        if (color_path.classList.contains("path_2") || color_path.classList.contains("path_3")) {
+            color_path.appendChild(getTemplate("path_template"))
+        } else {
+            color_path.appendChild(getTemplate("path_template_inverse"))
         }
+
+        color_path.querySelectorAll("[safe-path]").forEach(ele=>{
+            ele.classList.add("border")
+            ele.classList.add(e+"_safe")
+        })
+
+
+        pather_returns(color_path,(i))
+
+        if (e == "green") {
+            pather(color_path, 39, 13)
+        } 
+        else if (e == "blue") {
+            pather(color_path, 26, 26)
+        }
+
+        else if (e == "yellow") {
+            pather(color_path, 13, 39)
+        } else{
+            pather(color_path)
+        }
+        // else{
+        //     color_path.querySelectorAll(".path").forEach(path => {
+        //         path.innerHTML= path.getAttribute('uni-path')
+        //     })
+        // }
+    })
+}
+
+function pather_returns(color_path, i){
+    let num1 = (4-i)*13
+    let num2 = i*13
+    color_path.querySelectorAll(".path").forEach(path => {
+        if(i!=0){
+            if (path.getAttribute('uni-path') > 5) {
+                path.setAttribute("this-path", ((path.getAttribute('uni-path') | 0) - num1))
+            } else {
+                path.setAttribute("this-path", ((path.getAttribute('uni-path') | 0) + num2))
+            }
+        } else{
+            path.setAttribute("this-path", ((path.getAttribute('uni-path') | 0)))
+        }
+        // path.innerHTML= path.getAttribute('this-path')
     })
 
 }
 
+function pather(color_path, num1=0, num2=0){
+
+    color_path.querySelectorAll(".path").forEach(path => {
+
+        if(path.getAttribute('uni-path') == 48 || path.getAttribute('uni-path') == 1){
+            safe_tiles(path)
+        }
+
+        if (path.getAttribute('uni-path') > 5) {
+            path.setAttribute("uni-path", ((path.getAttribute('uni-path') | 0) - num1))
+        } else {
+            path.setAttribute("uni-path", ((path.getAttribute('uni-path') | 0) + num2))
+        }
+        // path.innerHTML= path.getAttribute('uni-path')
+    })
+}
 
 function safe_tiles(tile) {
     tile.classList.add("border")
