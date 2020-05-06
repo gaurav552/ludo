@@ -35,9 +35,11 @@ function peering() {
 }
 
 function getConnected(peerId) {
+    console.log(peerId)
     if (!remotePeerId.includes(peerId) && peerId != localStorage.getItem("User Name") && remotePeerId.length <= 3) {
         let conn = peer.connect(peerId)
         manageConnections(conn)
+        console.log(conn)
     }
 }
 
