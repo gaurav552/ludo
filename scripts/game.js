@@ -77,11 +77,23 @@ function mover(e) {
     if (localStorage.getItem("Color") == localStorage.getItem('Turn')) {
         // console.log(localStorage.getItem("Previous Roll"))
         if (localStorage.getItem("Previous Roll") != null) {
+
+            let send_others = {
+                'type':"move other",
+                'from':"",
+                'to':"",
+                'completion':false,
+                'color':localStorage.getItem("Color"),
+                'safe':false,
+                'safest':false
+            }
+
             // console.log(e.target.parentElement.getAttribute("this-path"))
             if (e.target.parentElement.hasAttribute("this-path")) {
                 let my_tile = (e.target.parentElement.getAttribute("this-path") | 0)
                 let new_tile = (my_tile + (localStorage.getItem("Previous Roll") | 0))
 
+                // console.log(document.querySelector("[this-path='"+ my_tile +"']").getAttribute())
                 let op = getTemplate("out_piece_template")
                 op.querySelector("button").classList.add(localStorage.getItem("Color") + "_piece")
 
@@ -89,16 +101,27 @@ function mover(e) {
                     e.target.remove()
                     document.querySelector("[this-path='" + new_tile + "']").appendChild(op)
                     localStorage.removeItem("Previous Roll")
+                    send_others.from = document.querySelector("[this-path='"+ my_tile +"']").getAttribute("uni-path")
+                    send_others.to = document.querySelector("[this-path='"+ new_tile +"']").getAttribute("uni-path")
+                    broadcastRoll(JSON.stringify(send_others))
                 } else {
 
                     new_tile = new_tile - 51
-                    completion(new_tile,e)
+                    if(new_tile == 6){
+                        send_others.from = document.querySelector("[this-path='"+ my_tile +"']").getAttribute("uni-path")
+                        completion(new_tile,e, my_tile,send_others,false,false)
+                    } else{
+                        completion(new_tile,e, my_tile,send_others,true,false)
+                    }
+                    
                 }
 
             } else if(e.target.parentElement.hasAttribute("safe-path")){
                 let my_tile = (e.target.parentElement.getAttribute("safe-path") | 0)
                 let new_tile = (my_tile + (localStorage.getItem("Previous Roll") | 0))
-                completion(new_tile, e)
+                completion(new_tile,e, my_tile,send_others,true,true)
+
+
             }
 
             // if(localStorage.getItem("Previous Roll") == 6){
@@ -110,14 +133,27 @@ function mover(e) {
 }
 
 
-function completion(new_tile, e){
+function completion(new_tile, e, my_tile, send, safe, safest){
 
     let op = getTemplate("out_piece_template")
     op.querySelector("button").classList.add(localStorage.getItem("Color") + "_piece")
 
+    if(safe){
+        send.safe = safe
+        send.from = document.querySelector("[this-path='"+ my_tile +"']").getAttribute("uni-path")
+        send.to = new_tile
+        if(safest){
+            send.safest = safest
+            send.from = my_tile
+        }
+    }
+
     if(new_tile == 6){
         e.target.remove()
         localStorage.removeItem("Previous Roll")
+        send.completion = true
+
+
     } else if(new_tile < 6){
         e.target.remove()
         document.querySelector("." + localStorage.getItem("Color") + "_safe[safe-path='" + new_tile + "']").appendChild(op)
@@ -125,17 +161,52 @@ function completion(new_tile, e){
     } else if(new_tile > 6){
 
     }
+    broadcastRoll(JSON.stringify(send))
 }
 
 
-function move_other() {
+function move_other(response) {
+    let cur_tile = response.from
+    let next_tile = response.to
+    let color = response.color
+    if(response.completion){
+        console.log(response)
+        if(!response.safe){
+            document.querySelector("[uni-path='"+ cur_tile +"']>."+color+"_piece").remove()
+        } else{
+            document.querySelector("[safe-path='"+ cur_tile +"']>."+color+"_piece").remove()
+        }
+        
+    } else{
+        if(response.safe){
+            
+            let op = getTemplate("out_piece_template")
+            op.querySelector("button").classList.add(color + "_piece")
+            
+            if(next_tile < 6){
+                if(response.safest){
+                    document.querySelector("[safe-path='"+ cur_tile +"']."+ color +"_safe >."+color+"_piece").remove()
+                } else{
+                    document.querySelector("[uni-path='"+ cur_tile +"'] >."+color+"_piece").remove()
+                }
+                document.querySelector("[safe-path='" + next_tile + "']."+ color +"_safe ").appendChild(op)
+            }
+            
+        } else{
+            let op = getTemplate("out_piece_template")
+            op.querySelector("button").classList.add(color + "_piece")
+            document.querySelector("[uni-path='" + next_tile + "']").appendChild(op)
+            document.querySelector("[uni-path='"+ cur_tile +"'] > ."+color+"_piece").remove()
+        }
 
+    }
 }
 
 function other_out(response) {
     let from = response.from
     let to = response.to
-    document.querySelectorAll(from)[0].disabled = true
+    console.log(document.querySelectorAll(from))
+    document.querySelector("#"+from).disabled = true
     let op = getTemplate("out_piece_template")
     op.querySelector("button").classList.add(response.color + "_piece")
     document.querySelector("[uni-path='" + to + "']").appendChild(op)

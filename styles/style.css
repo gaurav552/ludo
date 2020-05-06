@@ -89,7 +89,8 @@ main {
     width: 30%;
 }
 
-#user_name_form,#change_name_form >button {
+#user_name_form>button,
+#change_name_form>button {
     color: #999999;
     background: #161616;
     border: none;
@@ -102,11 +103,13 @@ main {
     box-shadow: 0.4rem 0.4rem 1rem rgba(0, 0, 0, 0.8), -0.4rem -0.4rem 1rem rgba(255, 255, 255, 0.1);
 }
 
-#user_name_form,#change_name_form>button:active{
+#user_name_form>button,
+#change_name_form>button:active {
     box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, .1);
 }
 
-#user_name_form,#change_name_form>button:focus{
+#user_name_form>button,
+#change_name_form>button:focus {
     outline: none;
 }
 
@@ -219,14 +222,14 @@ main {
     justify-content: center;
 }
 
-.network>form>input{
+.network>form>input {
     padding: 1rem;
     margin: 3rem;
     border-radius: 2rem;
     width: 50%;
 }
 
-.network>.friends{
+.network>.friends {
     width: 100%;
     margin: 1rem;
     display: flex;
@@ -236,7 +239,7 @@ main {
     padding: 1rem;
 }
 
-.network>.friends>.friends_list{
+.network>.friends>.friends_list {
     min-width: 30rem;
     height: 5rem;
     margin: 1rem;
@@ -248,20 +251,20 @@ main {
     padding: 1rem;
 }
 
-.network>.friends>.friends_list> h1{
+.network>.friends>.friends_list>h1 {
     margin-left: 1rem;
     color: #919191;
     letter-spacing: .3rem;
     font-weight: 600;
 }
 
-.friends_buttons{
+.friends_buttons {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.friends_buttons>button{
+.friends_buttons>button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -274,11 +277,11 @@ main {
     margin: 0 .3rem;
 }
 
-.friends_buttons>button>.material-icons{
+.friends_buttons>button>.material-icons {
     font-size: 2rem;
 }
 
-.start{
+.start {
     width: 60%;
     height: 5rem;
     margin: 3rem;
@@ -287,7 +290,7 @@ main {
     align-items: center;
 }
 
-.start>button{
+.start>button {
     width: 15rem;
     height: 4rem;
     border-radius: .7rem;
@@ -299,11 +302,11 @@ main {
     box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.8), -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
 }
 
-.start>button:focus{
+.start>button:focus {
     outline: none;
 }
 
-.start>button:active{
+.start>button:active {
     box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
 }
 
@@ -335,17 +338,18 @@ main {
     padding: 5rem;
 }
 
+
 /* .turn {
     box-shadow: 0 0 .8rem var(--border);
 } */
 
-.path-v{
+.path-v {
     height: 27.5rem;
     width: 15rem;
     padding: .5rem;
 }
 
-.path-h{
+.path-h {
     height: 15rem;
     width: 27.5rem;
     padding: .5rem;
@@ -357,7 +361,6 @@ main {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    
 }
 
 .path_1 {
@@ -373,7 +376,6 @@ main {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
 }
 
 .path_4 {
@@ -398,7 +400,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: spin 2s ease ;
+    animation: spin 2s ease;
 }
 
 .lines>.line1,
@@ -408,7 +410,6 @@ main {
     background: #999;
     left: 50%;
     bottom: 39%;
-
 }
 
 .line1 {
@@ -418,8 +419,6 @@ main {
 .line2 {
     transform: rotate(135deg);
 }
-
-
 
 .home-inner {
     width: 100%;
@@ -435,11 +434,11 @@ main {
     box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, .5);
 }
 
-.player{
+.player {
     box-shadow: 0 0 .8rem var(--border);
 }
 
-.turn>.home-inner{
+.turn>.home-inner {
     animation: pulse 1s ease-in-out infinite;
 }
 
@@ -468,8 +467,6 @@ main {
 .position:hover {
     transform: scale(1.3);
 }
-
-
 
 .tile {
     background: #202020;
@@ -517,8 +514,8 @@ main {
     box-shadow: inset -0.2rem -0.2rem 0.6rem rgba(255, 255, 255, 0.05), inset 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.8);
 }
 
-.dice-view{
-    perspective:60rem;
+.dice-view {
+    perspective: 60rem;
 }
 
 .dice {
@@ -528,9 +525,8 @@ main {
     border-radius: 2rem;
     box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, .5), -0.5rem -0.5rem 0.5rem rgba(255, 255, 255, 0.05);
     transition: transform 1s;
-    position:relative;
-
-    transform-style:preserve-3d;
+    position: relative;
+    transform-style: preserve-3d;
 }
 
 .roll {
@@ -560,9 +556,7 @@ main {
     color: #1165de;
 }
 
-
-
-.piece{
+.piece {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -576,23 +570,24 @@ main {
     z-index: 1;
 }
 
-.piece>.material-icons{
+.piece>.material-icons {
     font-size: 2rem;
 }
 
-.home_piece:disabled{
+.home_piece:disabled {
     background: transparent;
 }
 
-.safe{
+.safe {
     position: relative;
 }
-.safe>.material-icons{
+
+.safe>.material-icons {
     z-index: 0;
     position: absolute;
 }
 
-.tile{
+.tile {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -600,26 +595,25 @@ main {
     position: relative;
 }
 
-.tile>.red_piece{
+.tile>.red_piece {
     position: absolute;
     top: 0;
     left: 0;
     color: #222;
     z-index: 1;
-    background:rgba(255, 31, 0, .5);
+    background: rgba(255, 31, 0, .5);
 }
 
-
-.tile>.green_piece{
+.tile>.green_piece {
     position: absolute;
     top: 0;
     right: 0;
     z-index: 1;
     color: #222;
-    background:  rgba(57, 255, 20, .5);
+    background: rgba(57, 255, 20, .5);
 }
 
-.tile>.yellow_piece{
+.tile>.yellow_piece {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -628,11 +622,12 @@ main {
     background: rgba(255, 211, 0, .5);
 }
 
-.tile>.blue_piece{
+.tile>.blue_piece {
     position: absolute;
     bottom: 0;
     right: 0;
-    background: rgba(0, 128, 255, .5);;
+    background: rgba(0, 128, 255, .5);
+    ;
     color: #222;
     z-index: 1;
 }

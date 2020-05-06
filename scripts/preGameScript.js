@@ -80,8 +80,9 @@ function manageConnections(conn) {
                 } else if(message.type == "roll"){
                     dice_roller(message.value)
                 } else if(message.type == "home out"){
-                    console.log("here")
                     other_out(message)
+                } else if(message.type == "move other"){
+                    move_other(message)
                 }
                 else {
                     console.log("diff")
@@ -269,7 +270,8 @@ function game_changer() {
         document.querySelector(".network").remove()
     }
 
-    document.querySelectorAll("."+localStorage.getItem("Color")+".home_piece").forEach(e=>{
+    document.querySelectorAll("."+localStorage.getItem("Color")+".home_piece").forEach((e,i)=>{
+        e.setAttribute('id',localStorage.getItem("Color")+"_inside_"+i)
         e.addEventListener("click",ev=>{
             // console.log(ev.target.parentElement)
             if(localStorage.getItem("Color") == localStorage.getItem('Turn')){
@@ -283,13 +285,13 @@ function game_changer() {
 
                     let send_move = {
                         'type':'home out',
-                        'from': '.home_piece.'+localStorage.getItem("Color"),
+                        'from': e.getAttribute('id'),
                         'to': document.querySelector("[this-path='1']").getAttribute('uni-path'),
                         'color': localStorage.getItem("Color")
                     }
                     broadcastRoll(JSON.stringify(send_move))
                     document.querySelector(".roll>button").disabled = false
-                    // console.log(send_move)
+                    console.log(send_move)
                     // document.querySelectorAll(".out_piece")
                 } 
             }

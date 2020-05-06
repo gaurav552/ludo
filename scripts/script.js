@@ -12,17 +12,19 @@ function game_screen() {
     home.forEach((e, i) => {
         let inner = getTemplate("home_template")
         inner.querySelector(".position").classList.add(e.classList[0])
-        inner.querySelectorAll(".position>.piece").forEach(el => {
+        inner.querySelectorAll(".position>.piece").forEach((el, no) => {
+            el.setAttribute('id',e.classList[0]+"_inside_"+no)
             el.classList.add(e.classList[0])
-                // if (e.classList[0] == 'red') {
-                //     el.innerHTML = `<span class="material-icons">change_history</span>`
-                // } else if (e.classList[0] == 'green') {
-                //     el.innerHTML = `<span class="material-icons">favorite_border</span>`
-                // } else if (e.classList[0] == 'yellow') {
-                //     el.innerHTML = `<span class="material-icons">add</span>`
-                // } else if (e.classList[0] == 'blue') {
-                //     el.innerHTML = `<span class="material-icons">crop_free</span>`
-                // }
+                if (e.classList[0] == 'red') {
+                    
+                    // el.innerHTML = `<span class="material-icons">change_history</span>`
+                } else if (e.classList[0] == 'green') {
+                    // el.innerHTML = `<span class="material-icons">favorite_border</span>`
+                } else if (e.classList[0] == 'yellow') {
+                    // el.innerHTML = `<span class="material-icons">add</span>`
+                } else if (e.classList[0] == 'blue') {
+                    // el.innerHTML = `<span class="material-icons">crop_free</span>`
+                }
         })
         e.appendChild(inner)
     })
