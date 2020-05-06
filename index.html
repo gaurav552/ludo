@@ -196,6 +196,11 @@
                         }
                         broadcastRoll(JSON.stringify(send_roll))
                         dice_roller(rand)
+
+                        if(document.querySelectorAll("."+localStorage.getItem("Color")+"_piece").length == 0){
+                            e.target.disabled = false
+                        }
+
                         // console.log(rand)
                     })
                 </script>
