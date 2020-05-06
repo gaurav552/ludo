@@ -44,9 +44,10 @@ function getConnected(peerId) {
 }
 
 function manageConnections(conn) {
+    console.log("2 "+conn.peer)
     if (!remotePeerId.includes(conn.peer) && conn.peer != localStorage.getItem("User Name")) {
 
-        // console.log("1 "+conn.peer)
+        console.log("1 "+conn.peer)
 
         conn.on("open", () => {
             remotePeerId.push(conn.peer)
