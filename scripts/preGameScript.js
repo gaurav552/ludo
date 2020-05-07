@@ -10,7 +10,7 @@ let peer
 peering()
 
 function peering() {
-    peer = localStorage.getItem("User Name") != null ? new Peer() : null;
+    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name")) : null;
 
     if (peer != null) {
         console.log("connected")
@@ -18,7 +18,7 @@ function peering() {
         saved_friends = JSON.parse(localStorage.getItem("Friends"))
 
         peer.on('open', function(id) {
-            document.querySelector(".game-title>h1").innerHTML = id
+
             console.log('My peer ID is: ' + id);
         });
 
@@ -115,7 +115,7 @@ function manageConnections(conn) {
             conn.send(JSON.stringify(member_check))
 
         })
-        console.log(conn)
+                console.log(conn)
     }
 }
 
