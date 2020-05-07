@@ -10,8 +10,7 @@ let peer
 peering()
 
 function peering() {
-    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name"), {
-        debug: 3,
+    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name"),{
         config: {
             'iceServers': [
                 { url: 'stun:stun1.l.google.com:19302' },
