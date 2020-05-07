@@ -10,7 +10,19 @@ let peer
 peering()
 
 function peering() {
-    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name"), {key: '52hhtusf1t0rudi'}) : null;
+    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name"), {
+        debug: 3,
+        config: {
+            'iceServers': [
+                { url: 'stun:stun1.l.google.com:19302' },
+                {
+                    url: 'turn:numb.viagenie.ca',
+                    credential: 'muazkh',
+                    username: 'webrtc@live.com'
+                }
+            ]
+        }
+    }) : null;
 
     if (peer != null) {
         console.log("connected")
