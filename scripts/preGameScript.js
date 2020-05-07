@@ -10,7 +10,7 @@ let peer
 peering()
 
 function peering() {
-    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name")) : null;
+    peer = localStorage.getItem("User Name") != null ? new Peer() : null;
 
     if (peer != null) {
         console.log("connected")
