@@ -18,6 +18,7 @@ function peering() {
         saved_friends = JSON.parse(localStorage.getItem("Friends"))
 
         peer.on('open', function(id) {
+
             console.log('My peer ID is: ' + id);
         });
 
@@ -26,6 +27,7 @@ function peering() {
         })
 
         peer.on('connection', function(conn) {
+            console.log(conn.peer)
             manageConnections(conn);
         });
 
@@ -94,13 +96,14 @@ function manageConnections(conn) {
             conn.on('error', function(e) {
                 // handle error 
                 //    connectionError(conn);
-                console.log(e.type)
+                console.log(e)
                 
             });
 
-            conn.on('close', function() {
+            conn.on('close', function(e) {
                 // Handle connection closed
                 //    connectionClose(conn);
+                console.log(e)
                 remotePeerId.splice(remotePeerId.indexOf(conn.peer),1)
             });
 
