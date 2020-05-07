@@ -18,7 +18,7 @@ function peering() {
         saved_friends = JSON.parse(localStorage.getItem("Friends"))
 
         peer.on('open', function(id) {
-
+            document.querySelector(".game-title>h1").innerHTML = id
             console.log('My peer ID is: ' + id);
         });
 
