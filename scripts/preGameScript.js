@@ -91,9 +91,10 @@ function manageConnections(conn) {
                     console.log("diff")
                 }
             });
-            conn.on('error', function() {
+            conn.on('error', function(e) {
                 // handle error 
                 //    connectionError(conn);
+                console.log(e.type)
                 
             });
 
