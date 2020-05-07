@@ -27,7 +27,7 @@ function peering() {
         })
 
         peer.on('connection', function(conn) {
-            console.log(conn.peer)
+            console.log(conn.peer+" requested")
             manageConnections(conn);
         });
 
