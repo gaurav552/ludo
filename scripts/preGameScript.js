@@ -41,7 +41,6 @@ function getConnected(peerId) {
     if (!remotePeerId.includes(peerId) && peerId != localStorage.getItem("User Name") && remotePeerId.length <= 3) {
         let conn = peer.connect(peerId)
         manageConnections(conn)
-        console.log(conn)
     }
 }
 
@@ -116,6 +115,7 @@ function manageConnections(conn) {
             conn.send(JSON.stringify(member_check))
 
         })
+        console.log(conn)
     }
 }
 
