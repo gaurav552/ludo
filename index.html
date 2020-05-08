@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -100,24 +100,9 @@
                     </span>
                 </button>
 
-                <button class="color-button">
+                <button class="color-button" onclick="theme(event)">
                     <span class="material-icons">brightness_1</span>
                 </button>
-
-                <script>
-                    document.querySelector("button.color-button").addEventListener("click", e=>{
-                        if (document.documentElement.getAttribute('data-theme') == 'dark') {
-                            document.documentElement.setAttribute('data-theme', 'light');
-                            e.target.setAttribute("title", "Dark Mode")
-                            toast("Light Mode")
-                        } else {
-                            document.documentElement.setAttribute('data-theme', 'dark');
-                            e.target.setAttribute("title", "Light Mode")
-                            toast("Dark Mode")
-                        }
-                    })
-                </script>
-
             </div>
         </div>
     </template>
@@ -179,6 +164,12 @@
 
     <template id="game_template">
         <div class="game">
+            <button class="color-button" onclick="theme(event)">
+                <span class="material-icons">brightness_1</span>
+            </button>
+            <button class="close-button">
+                <span class="material-icons">close</span>
+            </button>
             <div class="board">
 
             </div>
@@ -228,6 +219,15 @@
                         }
 
                         // console.log(rand)
+                    })
+
+                    document.querySelector(".game>.close-button").addEventListener("click", e=>{
+                        localStorage.removeItem("Previous Roll")
+                        localStorage.removeItem("Last Roll")
+                        localStorage.removeItem("Turn")
+                        localStorage.removeItem("Color")
+                        document.querySelector("main").replaceChild(getTemplate("start_screen_template"), document.querySelector(".game"))
+                        display_start()
                     })
                 </script>
             </div>

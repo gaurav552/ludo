@@ -136,3 +136,15 @@ function toast(message) {
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
   }
+
+function theme(e){
+    if (document.documentElement.getAttribute('data-theme') == 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        e.target.setAttribute("title", "Dark Mode")
+        toast("Light Mode")
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        e.target.setAttribute("title", "Light Mode")
+        toast("Dark Mode")
+    }
+}
