@@ -12,12 +12,12 @@ html {
 
 :root {
     font-size: 10px;
-    --back: #242424;
-    --box: #212121;
-    --text: #777;
-    --shadow: .3rem .3rem 1rem rgba(0, 0, 0, .7), -.3rem -.3rem 1rem rgba(255, 255, 255, 0.11);
-    --shadowIn: inset .3rem .3rem 1rem rgba(0, 0, 0, .7), inset -.3rem -.3rem 1rem rgba(255, 255, 255, 0.11);
-    --tile: #202020;
+    --back: #202020;
+    --box: #272727;
+    --text: #7f7f7f;
+    --shadow: .3rem .3rem 1rem rgba(0, 0, 0, .9), -.3rem -.3rem 1rem rgba(255, 255, 255, 0.13);
+    --shadowIn: inset .3rem .3rem 1rem rgba(0, 0, 0, .9), inset -.3rem -.3rem 1rem rgba(255, 255, 255, 0.13);
+    --tile: #282828;
 }
 
 [data-theme="light"] {
@@ -26,7 +26,7 @@ html {
     --text: #555;
     --shadow: .3rem .3rem 1rem rgba(0, 0, 0, .11), -.3rem -.3rem 1rem rgba(255, 255, 255, .9);
     --shadowIn: inset .3rem .3rem 1rem rgba(0, 0, 0, .11), inset -.3rem -.3rem 1rem rgba(255, 255, 255, .9);
-    --tile: #f0f0f0;
+    --tile: #f5f5f5;
 }
 
 .green,
@@ -87,6 +87,11 @@ input {
     margin: 3rem;
     min-width: 30rem;
     font-size: 1.6rem;
+}
+
+input:focus{
+    outline: none;
+    box-shadow: var(--shadow);
 }
 
 body {
@@ -208,7 +213,7 @@ main {
 }
 
 .buttons>button:active {
-    box-shadow: var(--shadowIn)
+    box-shadow: var(--shadowIn);
 }
 
 .settings-screen {
@@ -705,4 +710,60 @@ main {
 
 @media only screen and (max-width: 120rem) {
 
+    body{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        min-height: 80rem;
+        overflow: hidden;
+        width: 100%;
+    }
+    main {
+        /* display: flex; */
+        flex-direction: column;
+        /* justify-content: flex-end; */
+        align-items: center;
+        height: 70%;
+        width: 100%;
+    }
+
+    .settings-screen{
+        margin-bottom: 3rem;
+    }
+
+    .start-screen{
+        margin-bottom: 3rem;
+    }
+
+    .player-name>.name{
+        margin: 1rem;
+        font-size: 1.9rem;
+    }
+
+    .buttons>button{
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .buttons>button>.material-icons{
+        font-size: 1.8rem;
+    }
+    #user_name_form>button, #change_name_form>button{
+        width: 4rem;
+        height: 4rem;
+    }
+
+    #user_name_form>button>.material-icons, #change_name_form>button>.material-icons{
+        font-size: 1.8rem;
+    }
+
+    .network>.friends>.friends_list>h1{
+        font-size: 1.4rem;
+    }
+
+    .friends{
+        max-height: 18rem;
+        overflow-y: scroll;
+    }
 }

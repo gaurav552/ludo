@@ -26,7 +26,7 @@ function peering() {
     if (peer != null) {
         console.log("connected")
         console.log(peer.id)
-        saved_friends = JSON.parse(localStorage.getItem("Friends"))
+        saved_friends = localStorage.getItem("Friends") != null?JSON.parse(localStorage.getItem("Friends")): []
 
         peer.on('open', function(id) {
             toast("Connected as "+ id)

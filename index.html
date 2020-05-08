@@ -37,9 +37,10 @@
                 <input type="text" required>
             </form>
             <div class="friends">
-                <div class="start">
-                    <button>Start</button>
-                </div>
+
+            </div>
+            <div class="start">
+                <button>Start</button>
             </div>
 
             <script>
@@ -110,20 +111,14 @@
     <template id="settings_template">
         <div class="settings-screen">
             <div class="close_setting">
-                <button>
-                    <span class="material-icons">close</span>
-                </button>
-
                 <script>
-                    document.querySelector(".close_setting>button").addEventListener("click", e=>{
-                        document.querySelector(".settings-screen").remove()
-                        display_start()
-                    })
 
                     document.querySelector("#change_name_form").addEventListener("submit",e=>{
                         e.preventDefault()
                         localStorage.setItem("User Name", document.querySelector("#edit_name").value)
                         toast("Name Updated")
+                        document.querySelector(".settings-screen").remove()
+                        display_start()
                     })
                 </script>
                
