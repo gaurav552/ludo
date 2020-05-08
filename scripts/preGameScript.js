@@ -29,16 +29,17 @@ function peering() {
         saved_friends = JSON.parse(localStorage.getItem("Friends"))
 
         peer.on('open', function(id) {
-
+            toast("Connected as "+ id)
             console.log('My peer ID is: ' + id);
         });
 
         peer.on("error", e => {
+            toast(e.type)
             console.log(e.type)
         })
 
         peer.on('connection', function(conn) {
-            console.log(conn.peer+" requested")
+            toast("Connected to "+conn.peer)
             manageConnections(conn);
         });
 
@@ -52,6 +53,8 @@ function getConnected(peerId) {
     if (!remotePeerId.includes(peerId) && peerId != localStorage.getItem("User Name") && remotePeerId.length <= 3) {
         let conn = peer.connect(peerId)
         manageConnections(conn)
+    } else{
+        toast("Connection error")
     }
 }
 
@@ -64,7 +67,7 @@ function manageConnections(conn) {
         conn.on("open", () => {
             remotePeerId.push(conn.peer)
 
-            console.log("connected to " + conn.peer)
+            toast("Connected to "+conn.peer)
 
             if (saved_friends != null) {
                 if (!saved_friends.includes(conn.peer)) {
@@ -107,6 +110,7 @@ function manageConnections(conn) {
                 // handle error 
                 //    connectionError(conn);
                 console.log(e)
+                toast(e)
                 
             });
 
@@ -114,6 +118,7 @@ function manageConnections(conn) {
                 // Handle connection closed
                 //    connectionClose(conn);
                 console.log(e)
+                toast(conn.peer+" got Disconnected")
                 remotePeerId.splice(remotePeerId.indexOf(conn.peer),1)
             });
 
@@ -200,6 +205,7 @@ function add_friend(name) {
     let new_friend = getTemplate("friends_list_template")
     new_friend.querySelector("h1").innerHTML = name
     document.querySelector(".friends").insertBefore(new_friend, document.querySelector(".network>.friends>.start"))
+    toast(name+' Added as friend')
 }
 
 function add_to_game(e) {
@@ -221,8 +227,9 @@ function remove_friend(e){
             e.close()
             console.log(e.peer+" close")
         }
-        
     })
+
+    toast("Friend removed")
 }
 
 function colouring() {
@@ -264,7 +271,7 @@ function game_changer() {
 
     let screen_template = getTemplate("game_template")
     let screen = `
-        <div id="${color[0]}" class="${color[0]} home player pos_1"></div>
+        <div id="${color[0]}" class="${color[0]} home pos_1"></div>
         <div class="${color[1]} ${color[1]}-move path path-v path_2"></div>
         <div id="${color[1]}" class="${color[1]} home pos_2"></div>
         <div class="${color[0]} ${color[0]}-move path path-h path_1"></div>

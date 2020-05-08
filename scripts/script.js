@@ -1,5 +1,6 @@
 document.querySelector("main").appendChild(getTemplate("start_screen_template"))
 
+
 function game_screen() {
     let path = document.querySelectorAll(".path")
     let path_red = document.querySelector(".path.red")
@@ -16,14 +17,14 @@ function game_screen() {
             el.setAttribute('id',e.classList[0]+"_inside_"+no)
             el.classList.add(e.classList[0])
                 if (e.classList[0] == 'red') {
-                    
-                    // el.innerHTML = `<span class="material-icons">change_history</span>`
+                    // el.setAttribute("data-feather","moon")
+                    el.innerHTML = `R`
                 } else if (e.classList[0] == 'green') {
-                    // el.innerHTML = `<span class="material-icons">favorite_border</span>`
+                    el.innerHTML = `G`
                 } else if (e.classList[0] == 'yellow') {
-                    // el.innerHTML = `<span class="material-icons">add</span>`
+                    el.innerHTML = `Y`
                 } else if (e.classList[0] == 'blue') {
-                    // el.innerHTML = `<span class="material-icons">crop_free</span>`
+                    el.innerHTML = `B`
                 }
         })
         e.appendChild(inner)
@@ -123,3 +124,15 @@ function getTemplate(TId) {
     }
     return document.importNode(window.templates[TId], true)
 }
+
+function toast(message) {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+    x.innerHTML = message
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }

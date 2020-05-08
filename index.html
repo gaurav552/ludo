@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/animations.css">
-    <!-- <script defer src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script> -->
     <script defer src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
     <script defer src="scripts/script.js"></script>
     <script defer src="scripts/preGameScript.js"></script>
     <script defer src="scripts/game.js"></script>
+    
     <title>ludo</title>
 
 </head>
@@ -20,6 +20,8 @@
     <main>
 
     </main>
+
+    <div id="snackbar"></div>
 
     <template id="start_screen_template">
         <div class="start-screen">
@@ -44,6 +46,7 @@
                 document.querySelector(".start>button").addEventListener("click", e => {
                     // if(remotePeerId.length >= 1){
                         colouring()
+                        toast("Game Started")
                     // }
                 })
 
@@ -96,6 +99,25 @@
                         settings
                     </span>
                 </button>
+
+                <button class="color-button">
+                    <span class="material-icons">brightness_1</span>
+                </button>
+
+                <script>
+                    document.querySelector("button.color-button").addEventListener("click", e=>{
+                        if (document.documentElement.getAttribute('data-theme') == 'dark') {
+                            document.documentElement.setAttribute('data-theme', 'light');
+                            e.target.setAttribute("title", "Dark Mode")
+                            toast("Light Mode")
+                        } else {
+                            document.documentElement.setAttribute('data-theme', 'dark');
+                            e.target.setAttribute("title", "Light Mode")
+                            toast("Dark Mode")
+                        }
+                    })
+                </script>
+
             </div>
         </div>
     </template>
@@ -116,6 +138,7 @@
                     document.querySelector("#change_name_form").addEventListener("submit",e=>{
                         e.preventDefault()
                         localStorage.setItem("User Name", document.querySelector("#edit_name").value)
+                        toast("Name Updated")
                     })
                 </script>
                
@@ -147,6 +170,7 @@
                     player_name.insertBefore(new_name_parent,form)
                     form.remove()
                     peering()
+                    toast("Name Saved")
                 })
 
             </script>
@@ -211,7 +235,7 @@
     </template>
 
     <template id="home_template">
-        <div class="home-inner">
+        <div class="home-inner player">
             <div class="initial">
                 <div class="position">
                     <button class="piece home_piece"></button>

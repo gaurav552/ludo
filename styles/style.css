@@ -11,26 +11,82 @@ html {
 
 :root {
     font-size: 10px;
+
+    --back:#191919;
+    --box:#212121;
+    --text:#777;
+    --shadow: .3rem .3rem 1rem rgba(0, 0, 0, .7), -.3rem -.3rem 1rem rgba(255, 255, 255, 0.11);
+    --shadowIn:inset .3rem .3rem 1rem rgba(0, 0, 0, .7),inset -.3rem -.3rem 1rem rgba(255, 255, 255, 0.11);
+    --tile:#252525;
 }
 
-.green {
-    --border: rgba(57, 255, 20, .5);
+[data-theme ="light"]{
+    --back:#e9e9e9;
+    --box:#e1e1e1;
+    --text:#555;
+    --shadow: .3rem .3rem 1rem rgba(0, 0, 0, .11), -.3rem -.3rem 1rem rgba(255, 255, 255, .9);
+    --shadowIn:inset .3rem .3rem 1rem rgba(0, 0, 0, .11),inset -.3rem -.3rem 1rem rgba(255, 255, 255, .9);
+    --tile:#f0f0f0;
 }
 
-.blue {
-    --border: rgba(0, 128, 255, .5);
+.green, .green_piece {
+    --border: #0b8457;
 }
 
-.red {
-    --border: rgba(255, 31, 0, .5);
+.blue, .blur_piece {
+    --border: #3d6cb9;
 }
 
-.yellow {
-    --border: rgba(255, 211, 0, .5);
+.red, .red_piece {
+    --border: #d72323;
+}
+
+.yellow, .yellow_piece {
+    --border: #be9d5b;
+    /* color: var(--tile)!important; */
+}
+
+.yellow_piece::after {
+    content: 'Y';
+    font-size: 1.4rem;
+    font-weight: 500;
+    color:#fff;
+}
+
+.green_piece::after {
+    content: 'G';
+    font-size: 1.4rem;
+    font-weight: 500;
+    color:#fff;
+}
+
+.red_piece::after {
+    content: 'R';
+    font-size: 1.4rem;
+    font-weight: 500;
+    color:#fff;
+}
+
+.blur_piece::after {
+    content: 'B';
+    font-size: 1.4rem;
+    font-weight: 500;
+    color:#fff;
+}
+
+input{
+    background: var(--back);
+    box-shadow: var(--shadowIn);
+    border: none;
+    color: var(--text);
+    height: 5rem;
+    margin: 3rem;
+    min-width: 30rem;
+    font-size: 1.6rem;
 }
 
 body {
-    background: #151515;
+    background: var(--back);
     width: 100vw;
     height: 100vh;
 }
@@ -52,7 +108,7 @@ main {
     position: fixed;
     top: 3rem;
     left: 50%;
-    color: #717171;
+    color: var(--text);
     margin-left: -83px;
     font-size: 1rem;
 }
@@ -70,7 +126,7 @@ main {
     margin: 2rem;
     padding: 2rem;
     font-size: 1.6rem;
-    color: #919191;
+    color: var(--text);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,8 +147,8 @@ main {
 
 #user_name_form>button,
 #change_name_form>button {
-    color: #999999;
-    background: #161616;
+    color: var(--text);
+    background: var(--back);
     border: none;
     width: 5rem;
     height: 5rem;
@@ -100,12 +156,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0.4rem 0.4rem 1rem rgba(0, 0, 0, 0.8), -0.4rem -0.4rem 1rem rgba(255, 255, 255, 0.1);
+    box-shadow:var(--shadow)
 }
 
 #user_name_form>button,
 #change_name_form>button:active {
-    box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, .1);
+    box-shadow:var(--shadowIn)
 }
 
 #user_name_form>button,
@@ -117,7 +173,7 @@ main {
     margin: 3rem;
     padding: 2rem;
     font-size: 2.5rem;
-    color: #828282;
+    color: var(--text);
     letter-spacing: .3rem;
 }
 
@@ -137,10 +193,10 @@ main {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background: #151515;
-    color: #919191;
+    background: var(--back);
+    color: var(--text);
     border: none;
-    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.8), -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+    box-shadow:var(--shadow)
 }
 
 .buttons>button:focus {
@@ -148,8 +204,9 @@ main {
 }
 
 .buttons>button:active {
-    box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, .1);
+    box-shadow:var(--shadowIn)
 }
+
 
 .settings-screen {
     height: 100%;
@@ -169,13 +226,13 @@ main {
 
 .settings-screen>#change_name_form>label {
     margin: 1rem;
-    color: #ccc;
+    color: var(--text);
 }
 
 .settings-screen>#change_name_form>input {
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 2rem;
+    margin: 3rem;
+    padding: 2rem;
+    border-radius: 2.5rem;
 }
 
 .settings-screen>.close_setting {
@@ -193,10 +250,11 @@ main {
     width: 5rem;
     height: 5rem;
     border: none;
-    background: #151515;
-    color: #919191;
+    background: var(--back);
+    color: var(--text);
     border: none;
-    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.8), -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+    box-shadow:var(--shadow)
+
 }
 
 .settings-screen>.close_setting>button:focus {
@@ -204,7 +262,7 @@ main {
 }
 
 .settings-screen>.close_setting>button:active {
-    box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+    box-shadow:var(--shadowIn)
 }
 
 .network {
@@ -243,7 +301,7 @@ main {
     min-width: 30rem;
     height: 5rem;
     margin: 1rem;
-    background: #282828;
+    background: var(--box);
     border-radius: 2rem;
     display: flex;
     justify-content: space-between;
@@ -253,7 +311,7 @@ main {
 
 .network>.friends>.friends_list>h1 {
     margin-left: 1rem;
-    color: #919191;
+    color: var(--text);
     letter-spacing: .3rem;
     font-weight: 600;
 }
@@ -272,8 +330,8 @@ main {
     width: 3rem;
     border-radius: 50%;
     border: none;
-    background: #181818;
-    color: #999;
+    background: var(--back);
+    color: var(--text);
     margin: 0 .3rem;
 }
 
@@ -295,11 +353,11 @@ main {
     height: 4rem;
     border-radius: .7rem;
     border: none;
-    background: #181818;
-    color: #999;
+    background: var(--back);
+    color: var(--text);
     letter-spacing: .5rem;
     text-transform: uppercase;
-    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, 0.8), -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
 }
 
 .start>button:focus {
@@ -307,7 +365,7 @@ main {
 }
 
 .start>button:active {
-    box-shadow: inset .4rem .4rem 1rem rgba(0, 0, 0, 0.8), inset -.4rem -.4rem 1rem rgba(255, 255, 255, 0.1);
+    box-shadow:var(--shadowIn)
 }
 
 .game {
@@ -321,21 +379,22 @@ main {
 .board {
     display: flex;
     flex-wrap: wrap;
-    background: #151515;
+    background: var(--back);
     width: 80rem;
     height: 80rem;
     border-radius: 2rem;
-    box-shadow: .5rem .5rem 1rem rgba(0, 0, 0, 0.5), -.5rem -.5rem 1rem rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow);
     padding: 5rem;
     margin: 2rem;
 }
 
 .home {
-    background: #292929;
+    background: var(--box);
     width: 27.5rem;
     height: 27.5rem;
     border-radius: 2rem;
     padding: 5rem;
+    /* box-shadow:var(--shadowIn) */
 }
 
 
@@ -389,11 +448,12 @@ main {
 .center {
     height: 15rem;
     width: 15rem;
-    background: #272727;
+    background: var(--box);
     border-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* box-shadow: inset #262626 0px 0px 2px 2px, inset #000000 4px 4px 8px, inset #4d4d4d -4px -4px 8px; */
 }
 
 .lines {
@@ -406,8 +466,8 @@ main {
 .lines>.line1,
 .line2 {
     width: .1rem;
-    height: 21rem;
-    background: #999;
+    height: 18rem;
+    background: #555;
     left: 50%;
     bottom: 39%;
 }
@@ -423,7 +483,7 @@ main {
 .home-inner {
     width: 100%;
     height: 100%;
-    background: #191919;
+    background: var(--back);
     border-radius: 2rem;
     padding: 3rem;
     display: flex;
@@ -431,7 +491,7 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    box-shadow: .4rem .4rem 1rem rgba(0, 0, 0, .5);
+    box-shadow: #262626 0px 0px 2px 2px, #000000 4px 4px 8px, #4d4d4d -4px -4px 8px;
 }
 
 .player {
@@ -469,22 +529,25 @@ main {
 }
 
 .tile {
-    background: #202020;
+    background: var(--tile);
     width: 4rem;
     height: 4rem;
     margin: .2rem;
     border-radius: .5rem;
     transition: all .2s ease-in-out;
-    color: #999;
+    color: var(--border);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* [safe-path]{
+    box-shadow:var(--shadowIn)
+} */
+
 .tile:hover {
     transform: scale(1.2)!important;
-    background: #303030;
-    color: #222;
+    background: var(--box);
 }
 
 .border {
@@ -496,41 +559,43 @@ main {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 25rem;
-    height: 50rem;
+    width: 30rem;
+    height: 56rem;
     border-radius: 2rem;
-    background: #151515;
+    background: var(--back);
     margin: 2rem;
-    box-shadow: inset -0.2rem -0.2rem 0.6rem rgba(255, 255, 255, 0.05), inset 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.8);
-    padding: 2rem;
-    color: #717171;
+    box-shadow:var(--shadowIn);
+    padding: 4rem 2rem;
+    color: var(--text);
 }
 
 .current-moves {
-    padding: 1.5rem;
+    width: 100%;
+    /* height: 5rem; */
+    text-align: center;
+    padding: 1.8rem;
     font-size: .8rem;
     letter-spacing: .3rem;
     border-radius: 2rem;
-    box-shadow: inset -0.2rem -0.2rem 0.6rem rgba(255, 255, 255, 0.05), inset 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.8);
 }
 
 .dice-view {
-    perspective: 60rem;
+    perspective: 70rem;
 }
 
 .dice {
     width: 13rem;
     height: 13rem;
-    background: #191919;
+    background: var(--back);
     border-radius: 2rem;
-    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, .5), -0.5rem -0.5rem 0.5rem rgba(255, 255, 255, 0.05);
+    box-shadow:var(--shadow);
     transition: transform 1s;
     position: relative;
     transform-style: preserve-3d;
 }
 
 .roll {
-    width: 100%;
+    width: 70%;
     padding: 1rem;
 }
 
@@ -538,11 +603,11 @@ main {
     width: 100%;
     height: 4rem;
     border-radius: 2rem;
-    color: #717171;
+    color: var(--text);
     border: none;
-    background: #191919;
+    background: var(--back);
     font-size: 1.8rem;
-    box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, .5), -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.05);
+    box-shadow:var(--shadow);
     letter-spacing: .4rem;
     transition: box-shadow 1s ease-in-out;
 }
@@ -552,8 +617,7 @@ main {
 }
 
 .roll>button:active {
-    box-shadow: inset 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, .5), inset -0.3rem -0.3rem 0.5rem rgba(255, 255, 255, 0.05);
-    color: #1165de;
+    box-shadow:var(--shadowIn);
 }
 
 .piece {
@@ -561,7 +625,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #999;
+    color: white;
     background: var(--border);
     width: 100%;
     height: 100%;
@@ -571,7 +635,7 @@ main {
 }
 
 .piece>.material-icons {
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 .home_piece:disabled {
@@ -595,16 +659,16 @@ main {
     position: relative;
 }
 
-.tile>.red_piece {
+.tile>.piece {
     position: absolute;
     top: 0;
     left: 0;
     color: #222;
     z-index: 1;
-    background: rgba(255, 31, 0, .5);
+    background: var(--border);
 }
 
-.tile>.green_piece {
+/* .tile>.green_piece {
     position: absolute;
     top: 0;
     right: 0;
@@ -630,4 +694,4 @@ main {
     ;
     color: #222;
     z-index: 1;
-}
+} */
