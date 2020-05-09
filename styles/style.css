@@ -788,10 +788,15 @@ main {
         justify-content: space-between;
         margin: 2rem;
     }
+    .lines>.line1, .line2{
+        height: 10rem;
+    }
 }
 
 @media only screen and (min-width: 700px) and (max-width: 1200px) {
- 
+    .lines>.line1, .line2{
+        height: 14rem;
+    }
     .board {
         transform: scale(.9);
     }
