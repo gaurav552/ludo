@@ -35,7 +35,7 @@ html {
 }
 
 .blue,
-.blur_piece {
+.blue_piece {
     --border: #3d6cb9;
 }
 
@@ -71,7 +71,7 @@ html {
     color: #fff;
 }
 
-.blur_piece::after {
+.blue_piece::after {
     content: 'B';
     font-size: 1.4rem;
     font-weight: 500;
@@ -89,7 +89,7 @@ input {
     font-size: 1.6rem;
 }
 
-input:focus{
+input:focus {
     outline: none;
     box-shadow: var(--shadow);
 }
@@ -98,6 +98,7 @@ body {
     background: var(--back);
     width: 100vw;
     height: 100vh;
+    position: relative;
 }
 
 main {
@@ -114,7 +115,7 @@ main {
 }
 
 .game-title {
-    position: fixed;
+    position: absolute;
     top: 3rem;
     left: 50%;
     color: var(--text);
@@ -302,6 +303,8 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    max-height: 22rem;
+    overflow-y: scroll;
 }
 
 .network>.friends>.friends_list {
@@ -708,62 +711,248 @@ main {
     background: var(--border);
 }
 
-@media only screen and (max-width: 120rem) {
+@media only screen and (max-width: 1200px) {
 
-    body{
+    .material-icons{
+        font-size: 1.6rem;
+    }
+    body {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         flex-direction: column;
         min-height: 80rem;
-        overflow: hidden;
         width: 100%;
+        min-width: 43rem;
     }
     main {
-        /* display: flex; */
         flex-direction: column;
-        /* justify-content: flex-end; */
         align-items: center;
-        height: 70%;
-        width: 100%;
     }
-
-    .settings-screen{
+    .settings-screen {
         margin-bottom: 3rem;
     }
-
-    .start-screen{
+    .start-screen {
         margin-bottom: 3rem;
     }
-
-    .player-name>.name{
+    .player-name>.name {
         margin: 1rem;
         font-size: 1.9rem;
     }
-
-    .buttons>button{
+    .buttons>button {
         width: 4rem;
         height: 4rem;
     }
-
-    .buttons>button>.material-icons{
+    .buttons>button>.material-icons {
         font-size: 1.8rem;
     }
-    #user_name_form>button, #change_name_form>button{
+    #user_name_form>button,
+    #change_name_form>button {
         width: 4rem;
         height: 4rem;
     }
-
-    #user_name_form>button>.material-icons, #change_name_form>button>.material-icons{
+    #user_name_form>button>.material-icons,
+    #change_name_form>button>.material-icons {
         font-size: 1.8rem;
     }
-
-    .network>.friends>.friends_list>h1{
+    .network>.friends>.friends_list>h1 {
         font-size: 1.4rem;
     }
-
-    .friends{
+    .friends {
         max-height: 18rem;
         overflow-y: scroll;
+    }
+    .game {
+        /* transform: scale(.8); */
+        flex-direction: column;
+    }
+    .game>.color-button,
+    .game>.close-button {
+        height: 3rem;
+        width: 3rem;
+    }
+    .game>.close-button {
+        top: 2rem;
+        right: 2rem;
+    }
+    .game>.color-button {
+        top: 2rem;
+        left: 2rem;
+    }
+    .game>.color-button>.material-icons,
+    .game>.close-button>.material-icons {
+        font-size: 1.6rem;
+    }
+    .controls {
+        height: auto;
+        justify-content: space-between;
+        margin: 2rem;
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1200px) {
+ 
+    .board {
+        transform: scale(.9);
+    }
+    .board {
+        width: 60rem;
+        height: 60rem;
+        border-radius: 1rem;
+        padding: 3.75rem;
+        margin: 1.5rem;
+    }
+    .home {
+        width: 19.875rem;
+        height: 19.875rem;
+        border-radius: 1rem;
+        padding: 3.75rem;
+        /* box-shadow: var(--shadowIn); */
+    }
+    .home-inner {
+        padding: 2rem;
+    }
+    .path-v {
+        height: 19.875rem;
+        width: 11.25rem;
+        padding: .375rem;
+    }
+    .path-h {
+        height: 11.25rem;
+        width: 19.875rem;
+        padding: .375rem;
+    }
+    .center {
+        height: 11.25rem;
+        width: 11.25rem;
+    }
+    .tile {
+        width: 2.8rem;
+        height: 2.8rem;
+        margin: .15rem;
+        border-radius: .2rem;
+    }
+    .dice-view {
+        /* transform: scale(.5); */
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 699px) {
+    .board {
+        /* transform: scale(.9); */
+    }
+    .yellow_piece::after {
+        font-size: 1rem;
+    }
+    
+    .green_piece::after {
+        font-size: 1rem;
+    }
+    
+    .red_piece::after {
+        font-size: 1rem;
+    }
+    
+    .blue_piece::after {
+        font-size: 1rem;
+    }
+
+    .position{
+        width: 80%;
+        height: 80%;
+    }
+
+    .piece{
+        font-size: 1rem;
+    }
+
+    /* body {
+        min-width: 100vw;
+    }
+    main {
+        width: 100%;
+    } */
+
+    /* 
+
+    .board {
+        transform: scale(.75);
+    }
+    .board {
+        width: 60rem;
+        height: 60rem;
+        border-radius: 1rem;
+        padding: 3.75rem;
+        margin: 1.5rem;
+    }
+    .home {
+        width: 19.875rem;
+        height: 19.875rem;
+        border-radius: 1rem;
+        padding: 3.75rem;
+    }
+    .home-inner {
+        padding: 2rem;
+    }
+    .path-v {
+        height: 19.875rem;
+        width: 11.25rem;
+        padding: .375rem;
+    }
+    .path-h {
+        height: 11.25rem;
+        width: 19.875rem;
+        padding: .375rem;
+    }
+    .center {
+        height: 11.25rem;
+        width: 11.25rem;
+    }
+    .tile {
+        width: 2.8rem;
+        height: 2.8rem;
+        margin: .15rem;
+        border-radius: .2rem;
+    } */
+
+    .board {
+        width: 40rem;
+        height: 40rem;
+        border-radius: 1rem;
+        padding: 2.5rem;
+        margin: 1rem;
+    }
+    .home {
+        width: 13.75rem;
+        height: 13.75rem;
+        border-radius: 1rem;
+        padding: 2.5rem;
+    }
+    .home-inner {
+        padding: 2rem;
+    }
+    .path-v {
+        height: 13.75rem;
+        width: 7.5rem;
+        padding: .25rem;
+    }
+    .path-h {
+        height: 7.5rem;
+        width: 13.75rem;
+        padding: .25rem;
+    }
+    .center {
+        height: 7.5rem;
+        width: 7.5rem;
+    }
+    .tile {
+        width: 2rem;
+        height: 2rem;
+        margin: .1rem;
+        border-radius: .2rem;
+    }
+    .dice-view {
+        display: none;
     }
 }

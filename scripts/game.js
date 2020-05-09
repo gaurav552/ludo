@@ -13,6 +13,7 @@ function dice_roller(rand) {
         // console.log(rand)
         // let multi = localStorage.getItem("Multi") !== null ? JSON.parse(localStorage.getItem("Multi")).multi : []
     if (rand != localStorage.getItem("Last Roll")) {
+        document.querySelector(".current-moves>h1").innerHTML = rand
         if (rand == 1) {
             document.querySelector(".dice").style.transform = 'rotateY(360deg)'
         } else if (rand == 2) {
@@ -27,7 +28,7 @@ function dice_roller(rand) {
             document.querySelector(".dice").style.transform = "rotateX(90deg)"
         }
     } else {
-
+        document.querySelector(".current-moves>h1").innerHTML = rand+" Again"
         if (rand == 1) {
             document.querySelector(".dice").style.transform = 'rotateX(0deg)'
             setTimeout(() => {
@@ -126,7 +127,7 @@ function mover(e) {
 
             // if(localStorage.getItem("Previous Roll") == 6){
             document.querySelector(".roll>button").disabled = false
-
+            document.querySelector(".current-moves>h1").innerHTML = "No Moves Left"
             e.target.disabled = false
         }
     }

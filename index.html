@@ -174,7 +174,7 @@
                         No Moves Left
                     </h1>
                 </div>
-                <div class="dice-view">
+                <button class="dice-view">
                     <div class="dice">
                         <div class="diceFace" id="one"><img src="assets/one.png" width="100%" height="100%" alt=""></div>
                         <div class="diceFace" id="two"><img src="assets/two.png" width="100%" height="100%" alt=""></div>
@@ -183,11 +183,11 @@
                         <div class="diceFace" id="five"><img src="assets/five.png" width="100%" height="100%" alt=""></div>
                         <div class="diceFace" id="six"><img src="assets/six.png" width="100%" height="100%" alt=""></div>
                     </div>
-                </div>
+                </button>
 
     
                 <div class="roll">
-                    <button type="button">Roll</button>
+                    <button type="button" onclick="roller(event)">Roll</button>
                 </div>
                 <script>
                     if(localStorage.getItem("Turn") == localStorage.getItem("Color")){
@@ -196,8 +196,7 @@
                         document.querySelector(".roll>button").disabled = true
                     }
 
-                    document.querySelector(".roll>button").addEventListener("click", e=>{
-                        // console.log(Math.floor(Math.random() * (6)+1))
+                    function roller(e){
                         e.target.disabled = true
                         let rand = Math.floor(Math.random() * (6)+1)
                         
@@ -212,9 +211,27 @@
                         if(document.querySelectorAll("."+localStorage.getItem("Color")+"_piece").length == 0){
                             e.target.disabled = false
                         }
+                    }
 
-                        // console.log(rand)
-                    })
+                    // document.querySelector(".roll>button").addEventListener("click", e=>{
+                    //     // console.log(Math.floor(Math.random() * (6)+1))
+                    //     e.target.disabled = true
+                    //     let rand = Math.floor(Math.random() * (6)+1)
+                        
+
+                    //     let send_roll = {
+                    //         'type':'roll',
+                    //         'value':rand
+                    //     }
+                    //     broadcastRoll(JSON.stringify(send_roll))
+                    //     dice_roller(rand)
+
+                    //     if(document.querySelectorAll("."+localStorage.getItem("Color")+"_piece").length == 0){
+                    //         e.target.disabled = false
+                    //     }
+
+                    //     // console.log(rand)
+                    // })
 
                     document.querySelector(".game>.close-button").addEventListener("click", e=>{
                         localStorage.removeItem("Previous Roll")
