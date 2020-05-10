@@ -10,7 +10,7 @@ let peer
 peering()
 
 function peering() {
-    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name"),{
+    peer = localStorage.getItem("User Name") != null ? new Peer(localStorage.getItem("User Name"), {
         config: {
             'iceServers': [
                 { url: 'stun:stun1.l.google.com:19302' },
@@ -26,10 +26,10 @@ function peering() {
     if (peer != null) {
         console.log("connected")
         console.log(peer.id)
-        saved_friends = localStorage.getItem("Friends") != null?JSON.parse(localStorage.getItem("Friends")): []
+        saved_friends = localStorage.getItem("Friends") != null ? JSON.parse(localStorage.getItem("Friends")) : []
 
         peer.on('open', function(id) {
-            toast("Connected as "+ id)
+            toast("Connected as " + id)
             console.log('My peer ID is: ' + id);
         });
 
@@ -39,7 +39,7 @@ function peering() {
         })
 
         peer.on('connection', function(conn) {
-            toast("Connected to "+conn.peer)
+            toast("Connected to " + conn.peer)
             manageConnections(conn);
         });
 
@@ -53,7 +53,7 @@ function getConnected(peerId) {
     if (!remotePeerId.includes(peerId) && peerId != localStorage.getItem("User Name") && remotePeerId.length <= 3) {
         let conn = peer.connect(peerId)
         manageConnections(conn)
-    } else{
+    } else {
         toast("Connection error")
     }
 }
@@ -67,7 +67,7 @@ function manageConnections(conn) {
         conn.on("open", () => {
             remotePeerId.push(conn.peer)
 
-            toast("Connected to "+conn.peer)
+            toast("Connected to " + conn.peer)
 
             if (saved_friends != null) {
                 if (!saved_friends.includes(conn.peer)) {
@@ -95,14 +95,13 @@ function manageConnections(conn) {
                     localStorage.setItem("Color", message.value)
                     localStorage.setItem("Turn", message.turn)
                     game_changer()
-                } else if(message.type == "roll"){
+                } else if (message.type == "roll") {
                     dice_roller(message.value)
-                } else if(message.type == "home out"){
+                } else if (message.type == "home out") {
                     other_out(message)
-                } else if(message.type == "move other"){
+                } else if (message.type == "move other") {
                     move_other(message)
-                }
-                else {
+                } else {
                     console.log("diff")
                 }
             });
@@ -111,15 +110,15 @@ function manageConnections(conn) {
                 //    connectionError(conn);
                 console.log(e)
                 toast(e)
-                
+
             });
 
             conn.on('close', function(e) {
                 // Handle connection closed
                 //    connectionClose(conn);
                 console.log(e)
-                toast(conn.peer+" got Disconnected")
-                remotePeerId.splice(remotePeerId.indexOf(conn.peer),1)
+                toast(conn.peer + " got Disconnected")
+                remotePeerId.splice(remotePeerId.indexOf(conn.peer), 1)
             });
 
             connections.push(conn);
@@ -131,7 +130,7 @@ function manageConnections(conn) {
             conn.send(JSON.stringify(member_check))
 
         })
-                console.log(conn)
+        console.log(conn)
     }
 }
 
@@ -205,27 +204,27 @@ function add_friend(name) {
     let new_friend = getTemplate("friends_list_template")
     new_friend.querySelector("h1").innerHTML = name
     document.querySelector(".friends").insertBefore(new_friend, document.querySelector(".network>.friends>.start"))
-    toast(name+' Added as friend')
+    toast(name + ' Added as friend')
 }
 
 function add_to_game(e) {
     getConnected(e.target.parentElement.parentElement.parentElement.querySelector("h1").innerHTML)
 }
 
-function remove_friend(e){
+function remove_friend(e) {
     let val = e.target.parentElement.parentElement.parentElement.querySelector("h1").innerHTML
     e.target.parentElement.parentElement.parentElement.remove()
-    saved_friends.splice(saved_friends.indexOf(val),1)
-    remotePeerId.splice(remotePeerId.indexOf(val),1)
-    if(saved_friends.length != 0 ){
+    saved_friends.splice(saved_friends.indexOf(val), 1)
+    remotePeerId.splice(remotePeerId.indexOf(val), 1)
+    if (saved_friends.length != 0) {
         localStorage.setItem("Friends", saved_friends)
     } else {
         localStorage.removeItem("Friends")
     }
-    connections.forEach((e,i)=>{
-        if(e.peer == val){
+    connections.forEach((e, i) => {
+        if (e.peer == val) {
             e.close()
-            console.log(e.peer+" close")
+            console.log(e.peer + " close")
         }
     })
 
@@ -267,7 +266,7 @@ function game_changer() {
     let my_color = localStorage.getItem("Color")
     let color = ['red', 'green', 'blue', 'yellow']
     color = color_repositioning(my_color, color)
-    // console.log(color)
+        // console.log(color)
 
     let screen_template = getTemplate("game_template")
     let screen = `
@@ -286,30 +285,28 @@ function game_changer() {
         <div class="${color[3]} ${color[3]}-move path path-v path_4"></div>
         <div id="${color[2]}" class="${color[2]} home pos_3"></div>
     `
-    // console.log('.board>.home.'+localStorage.getItem("Turn"))
+        // console.log('.board>.home.'+localStorage.getItem("Turn"))
     screen_template.querySelector(".board").innerHTML = screen
     document.querySelector("main").replaceChild(screen_template, document.querySelector(".start-screen"))
     document.getElementById(localStorage.getItem("Turn")).classList.add("turn")
     game_screen()
-    if(document.querySelector(".network") !== null){
+    if (document.querySelector(".network") !== null) {
         document.querySelector(".network").remove()
     }
 
-    document.querySelectorAll("."+localStorage.getItem("Color")+".home_piece").forEach((e,i)=>{
-        e.setAttribute('id',localStorage.getItem("Color")+"_inside_"+i)
-        e.addEventListener("click",ev=>{
+    document.querySelectorAll("." + localStorage.getItem("Color") + ".home_piece").forEach((e, i) => {
+        e.setAttribute('id', localStorage.getItem("Color") + "_inside_" + i)
+        e.addEventListener("click", ev => {
             // console.log(ev.target.parentElement)
-            if(localStorage.getItem("Color") == localStorage.getItem('Turn')){
-                if(localStorage.getItem("Previous Roll") == 6){
+            if (localStorage.getItem("Color") == localStorage.getItem('Turn')) {
+                if (localStorage.getItem("Previous Roll") == 6) {
                     localStorage.removeItem("Previous Roll")
                     ev.target.disabled = true
-                    let op =getTemplate("out_piece_template")
-                    // console.log(op.querySelector("button"))
-                    op.querySelector("button").classList.add(localStorage.getItem("Color")+"_piece")
-                    document.querySelector("[this-path='1']").appendChild(op)
+
+                    document.querySelector("[this-path='1']").appendChild(out_piece_fun(localStorage.getItem("Color")))
 
                     let send_move = {
-                        'type':'home out',
+                        'type': 'home out',
                         'from': e.getAttribute('id'),
                         'to': document.querySelector("[this-path='1']").getAttribute('uni-path'),
                         'color': localStorage.getItem("Color")
@@ -317,12 +314,12 @@ function game_changer() {
                     broadcastRoll(JSON.stringify(send_move))
                     document.querySelector(".roll>button").disabled = false
                     console.log(send_move)
-                    // document.querySelectorAll(".out_piece")
-                } 
+                        // document.querySelectorAll(".out_piece")
+                }
             }
         })
     })
-    
+
 }
 
 

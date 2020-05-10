@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: background .5s ease-in-out;
 }
 
 html {
@@ -17,7 +16,7 @@ html {
     --text: #7f7f7f;
     --shadow: .3rem .3rem 1rem rgba(0, 0, 0, .9), -.3rem -.3rem 1rem rgba(255, 255, 255, 0.13);
     --shadowIn: inset .3rem .3rem 1rem rgba(0, 0, 0, .9), inset -.3rem -.3rem 1rem rgba(255, 255, 255, 0.13);
-    --tile: #282828;
+    --tile: #353535;
 }
 
 [data-theme="light"] {
@@ -26,7 +25,7 @@ html {
     --text: #555;
     --shadow: .3rem .3rem 1rem rgba(0, 0, 0, .11), -.3rem -.3rem 1rem rgba(255, 255, 255, .9);
     --shadowIn: inset .3rem .3rem 1rem rgba(0, 0, 0, .11), inset -.3rem -.3rem 1rem rgba(255, 255, 255, .9);
-    --tile: #f5f5f5;
+    --tile: #d1d1d1;
 }
 
 .green,
@@ -99,6 +98,7 @@ body {
     width: 100vw;
     height: 100vh;
     position: relative;
+    transition: background .5s ease-in-out;
 }
 
 main {
@@ -617,13 +617,15 @@ main {
     /* height: 5rem; */
     text-align: center;
     padding: 1.8rem;
-    font-size: .8rem;
+    font-size: 1.4rem;
     letter-spacing: .3rem;
     border-radius: 2rem;
 }
 
 .dice-view {
+    background: none;
     perspective: 70rem;
+    border: none;
 }
 
 .dice {
@@ -700,6 +702,7 @@ main {
     flex-wrap: wrap;
     align-items: center;
     position: relative;
+    background: var(--tile);
 }
 
 .tile>.piece {
@@ -864,62 +867,13 @@ main {
     }
 
     .position{
-        width: 80%;
-        height: 80%;
+        width: 65%;
+        height: 65%;
     }
 
     .piece{
         font-size: 1rem;
     }
-
-    /* body {
-        min-width: 100vw;
-    }
-    main {
-        width: 100%;
-    } */
-
-    /* 
-
-    .board {
-        transform: scale(.75);
-    }
-    .board {
-        width: 60rem;
-        height: 60rem;
-        border-radius: 1rem;
-        padding: 3.75rem;
-        margin: 1.5rem;
-    }
-    .home {
-        width: 19.875rem;
-        height: 19.875rem;
-        border-radius: 1rem;
-        padding: 3.75rem;
-    }
-    .home-inner {
-        padding: 2rem;
-    }
-    .path-v {
-        height: 19.875rem;
-        width: 11.25rem;
-        padding: .375rem;
-    }
-    .path-h {
-        height: 11.25rem;
-        width: 19.875rem;
-        padding: .375rem;
-    }
-    .center {
-        height: 11.25rem;
-        width: 11.25rem;
-    }
-    .tile {
-        width: 2.8rem;
-        height: 2.8rem;
-        margin: .15rem;
-        border-radius: .2rem;
-    } */
 
     .board {
         width: 40rem;
@@ -932,10 +886,10 @@ main {
         width: 13.75rem;
         height: 13.75rem;
         border-radius: 1rem;
-        padding: 2.5rem;
+        padding: 2rem;
     }
     .home-inner {
-        padding: 2rem;
+        padding: 1rem;
     }
     .path-v {
         height: 13.75rem;
@@ -957,6 +911,8 @@ main {
         margin: .1rem;
         border-radius: .2rem;
     }
+
+
     .dice-view {
         display: none;
     }

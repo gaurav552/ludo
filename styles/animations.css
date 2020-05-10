@@ -1,147 +1,293 @@
 @keyframes spin {
-    0%{
+    0% {
         transform: rotateZ(0)
     }
-    50%{
+    50% {
         transform: rotateZ(360deg)
     }
-    100%{
+    100% {
         transform: rotateZ(720deg);
     }
 }
 
-@keyframes pulse {
-    from {
-      -webkit-transform: scale3d(1, 1, 1);
-      transform: scale3d(1, 1, 1);
-    }
-  
-    50% {
-      -webkit-transform: scale3d(1.05, 1.05, 1.05);
-      transform: scale3d(1.05, 1.05, 1.05);
-    }
-  
-    to {
-      -webkit-transform: scale3d(1, 1, 1);
-      transform: scale3d(1, 1, 1);
-    }
-  }
-  
-
-.spin{
-    animation: spin 2s ease infinite;
-}
-
-.pulse{
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes shake {
+@keyframes bounceIn {
   from,
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    -webkit-transform: translate3d(-10px, 0, 0);
-    transform: translate3d(-10px, 0, 0);
-  }
-
   20%,
   40%,
   60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
   80% {
-    -webkit-transform: translate3d(10px, 0, 0);
-    transform: translate3d(10px, 0, 0);
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
 }
 
-.shake{
-  animation: shake 1s ease-in-out infinite;
+@keyframes bounceOut {
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  50%,
+  55% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
 }
 
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(0.3, 0.3, 0.3);
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+}
 
-#one{
-  /* background-color:rgba(255,0,0,0.6); */
-  transform:rotateY(0deg) translateZ(100px);
-  }
-  #two{
-  /* background-color:rgba(0,255,0,0.6); */
-  transform:rotateY(90deg) translateZ(100px);
-  }
-  #three{
-  /* background-color:rgba(255,255,0,0.6); */
-  transform:rotateY(180deg) translateZ(100px);
-  }
-  #four{
-  /* background-color:rgba(255,0,255,0.6); */
-  transform:rotateY(-90deg) translateZ(100px);
-  }
-  #five{
-  /* background-color:rgba(0,255,255,0.6); */
-  transform:rotateX(90deg) translateZ(100px);
-  }
-  #six{
-  /* background-color:rgba(0,0,255,0.6); */
-  transform:rotateX(-90deg) translateZ(100px);
-  }
+@keyframes zoomOut {
+    from {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.3, 0.3, 0.3);
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    to {
+        opacity: 0;
+    }
+}
 
-  .diceFace{
-    position:absolute;
+.zoomIn {
+    animation: zoomIn .5s ease-in-out;
+}
+
+.zoomOut {
+    animation: zoomOut .5s ease-in-out;
+}
+
+.bounceIn {
+  animation: bounceIn 1s ease-in-out;
+}
+
+.bounceOut {
+  animation: bounceOut 1s ease-in-out;
+}
+
+@keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.spin {
+    animation: spin 2s ease infinite;
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes shake {
+    from,
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        -webkit-transform: translate3d(-10px, 0, 0);
+        transform: translate3d(-10px, 0, 0);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+        -webkit-transform: translate3d(10px, 0, 0);
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+.shake {
+    animation: shake 1s ease-in-out infinite;
+}
+
+#one {
+    /* background-color:rgba(255,0,0,0.6); */
+    transform: rotateY(0deg) translateZ(100px);
+}
+
+#two {
+    /* background-color:rgba(0,255,0,0.6); */
+    transform: rotateY(90deg) translateZ(100px);
+}
+
+#three {
+    /* background-color:rgba(255,255,0,0.6); */
+    transform: rotateY(180deg) translateZ(100px);
+}
+
+#four {
+    /* background-color:rgba(255,0,255,0.6); */
+    transform: rotateY(-90deg) translateZ(100px);
+}
+
+#five {
+    /* background-color:rgba(0,255,255,0.6); */
+    transform: rotateX(90deg) translateZ(100px);
+}
+
+#six {
+    /* background-color:rgba(0,0,255,0.6); */
+    transform: rotateX(-90deg) translateZ(100px);
+}
+
+.diceFace {
+    position: absolute;
     background: var(--back);
     border-radius: 2rem;
     box-shadow: var(--shadow);
-    }
+}
 
-    #snackbar {
-      visibility: hidden; /* Hidden by default. Visible on click */
-      min-width: 250px; /* Set a default minimum width */
-      margin-left: -125px; /* Divide value of min-width by 2 */
-      background-color: var(--box); /* Black background color */
-      color: var(--text); /* White text color */
-      text-align: center; /* Centered text */
-      border-radius: 2px; /* Rounded borders */
-      padding: 16px; /* Padding */
-      position: fixed; /* Sit on top of the screen */
-      z-index: 1; /* Add a z-index if needed */
-      left: 50%; /* Center the snackbar */
-      bottom: 30px; /* 30px from the bottom */
-      border-radius: 2rem;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
-    
-    /* Show the snackbar when clicking on a button (class added with JavaScript) */
-    #snackbar.show {
-      visibility: visible; /* Show the snackbar */
-      /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+#snackbar {
+    visibility: hidden;
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: var(--box);
+    /* Black background color */
+    color: var(--text);
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 2px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 1;
+    /* Add a z-index if needed */
+    left: 50%;
+    /* Center the snackbar */
+    bottom: 30px;
+    /* 30px from the bottom */
+    border-radius: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+
+#snackbar.show {
+    visibility: visible;
+    /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
       However, delay the fade out process for 2.5 seconds */
-      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+
+/* Animations to fade the snackbar in and out */
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
     }
-    
-    /* Animations to fade the snackbar in and out */
-    @-webkit-keyframes fadein {
-      from {bottom: 0; opacity: 0;}
-      to {bottom: 30px; opacity: 1;}
+    to {
+        bottom: 30px;
+        opacity: 1;
     }
-    
-    @keyframes fadein {
-      from {bottom: 0; opacity: 0;}
-      to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
     }
-    
-    @-webkit-keyframes fadeout {
-      from {bottom: 30px; opacity: 1;}
-      to {bottom: 0; opacity: 0;}
+    to {
+        bottom: 30px;
+        opacity: 1;
     }
-    
-    @keyframes fadeout {
-      from {bottom: 30px; opacity: 1;}
-      to {bottom: 0; opacity: 0;}
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
     }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
