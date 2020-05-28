@@ -1,3 +1,3 @@
 # ludo
  ludo game
- to be completed soon
+(not complete)
